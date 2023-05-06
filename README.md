@@ -338,3 +338,26 @@ resource "local_file" "pet" {
 | provider.tf  | The file containing the provider configuration                |
 
 
+### Multiple Providers
+Here we will look at using multiple providers with Terraform. We can also use multiple providers in the terraform system.
+
+```yaml
+
+resource "local_file" "pet" {
+  filename = "/root/pets.txt"
+  content = "We love pets!"
+}
+```
+We can add a random provider:
+
+```yaml
+resource "random_pet" "my-pet" {
+  prefix = "Mrs"
+  separator = "."
+  length = "1"
+}
+```
+
+We have to run terraform init to add the random provider. We then run terraform plan to view the plan. A new resource will be 
+created based on the new resource block we added. We then can add the new configuration with terraform apply. 
+
